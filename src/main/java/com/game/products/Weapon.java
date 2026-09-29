@@ -1,4 +1,7 @@
 package com.game.products;
 
-public class Weapon {
+public interface Weapon {
+    int getBaseDamage();
+    String getElement();
+    String attack();
 }

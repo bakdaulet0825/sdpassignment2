@@ -1,4 +1,7 @@
 package com.game.products;
 
-public class Spell {
+public interface Spell {
+    int getMagicPower();
+    String getElement();
+    String cast();
 }

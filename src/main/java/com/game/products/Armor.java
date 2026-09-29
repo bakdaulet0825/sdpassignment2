@@ -1,4 +1,7 @@
 package com.game.products;
 
-public class Armor {
+public interface Armor {
+    int getDefenseValue();
+    String getElement();
+    String protect();
 }
