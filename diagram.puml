@@ -1,0 +1,52 @@
+@startuml
+package "Products" {
+  interface Weapon
+  interface Armor
+  interface Spell
+
+  class FireWeapon implements Weapon
+  class FireArmor implements Armor
+  class FireSpell implements Spell
+
+  class ShadowWeapon implements Weapon
+  class ShadowArmor implements Armor
+  class ShadowSpell implements Spell
+}
+
+package "Factory Method Pattern" {
+  abstract class WeaponCrafter {
+    + {abstract} createWeapon(): Weapon
+    + prepareAndTestWeapon(): String
+  }
+  class FireWeaponCrafter extends WeaponCrafter {
+    + createWeapon(): Weapon
+  }
+}
+
+package "Abstract Factory Pattern" {
+  interface EquipmentFactory {
+    + createWeapon(): Weapon
+    + createArmor(): Armor
+    + createSpell(): Spell
+  }
+  class FireEquipmentFactory implements EquipmentFactory {
+    + createWeapon(): Weapon
+    + createArmor(): Armor
+    + createSpell(): Spell
+  }
+}
+
+class GameClient {
+  - weapon: Weapon
+  - armor: Armor
+  - spell: Spell
+  + GameClient(factory: EquipmentFactory)
+  + executeElementalSynergyStrike(): int
+}
+
+GameClient --> EquipmentFactory
+WeaponCrafter ..> Weapon
+EquipmentFactory ..> Weapon
+EquipmentFactory ..> Armor
+EquipmentFactory ..> Spell
+@enduml
